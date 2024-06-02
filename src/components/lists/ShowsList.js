@@ -1,22 +1,23 @@
 import { FlatList } from "react-native";
-import MovieCard from "../listItems/MovieCard";
+import ShowCard from "../listItems/ShowCard";
 
-const MoviesList = (props) => {
+const ShowsList = (props) => {
   const { movies, navigation } = props;
   return (
     <FlatList
       data={movies}
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
-        <MovieCard
+        <ShowCard
           image={item.poster_path}
           title={item.title}
           popularity={item.popularity}
           releaseDate={item.release_date}
           navigation={navigation}
+          overview={item.overview}
         />
       )}
     />
   );
 };
-export default MoviesList;
+export default ShowsList;

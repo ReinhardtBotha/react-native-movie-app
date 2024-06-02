@@ -1,6 +1,5 @@
-import { Box, GluestackUIProvider } from "@gluestack-ui/themed";
+import { GluestackUIProvider } from "@gluestack-ui/themed";
 import { StatusBar } from "expo-status-bar";
-import { Text } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { config } from "@gluestack-ui/config";
 import AppStack from "./src/components/stacks/AppStack";

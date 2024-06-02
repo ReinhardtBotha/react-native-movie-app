@@ -1,5 +1,7 @@
-import MoviesContainer from "../containers/MoviesContainer";
+import ShowsContainer from "../containers/ShowsContainer";
 
-const IndexScreen = ({ navigation }) => <MoviesContainer navigation={navigation} />
+const IndexScreen = ({ navigation }) => (
+  <ShowsContainer navigation={navigation} />
+);
 
-export default IndexScreen
+export default IndexScreen;
