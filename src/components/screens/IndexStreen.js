@@ -1,7 +1,5 @@
-import ShowsContainer from "../containers/ShowsContainer";
+import IndexStack from "../stacks/IndexStack";
 
-const IndexScreen = ({ navigation }) => (
-  <ShowsContainer navigation={navigation} />
-);
+const IndexScreen = () => <IndexStack />;
 
 export default IndexScreen;
