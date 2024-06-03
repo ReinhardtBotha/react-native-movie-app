@@ -1,3 +1,4 @@
+import { Alert } from "react-native";
 import { BASE_URL, API_KEY } from "../config/apiConfig";
 import axios from "axios";
 
@@ -16,7 +17,7 @@ export const getShows = async (type, screen = "movie", page = 1) => {
 
     return response;
   } catch (error) {
-    console.error("error", error);
+    Alert.error("error", error);
   }
 };
 
@@ -30,7 +31,7 @@ export const getShowDetails = async (id, screen = "movie") => {
 
     return response;
   } catch (error) {
-    console.error("error", error);
+    Alert.error("error", error);
   }
 };
 
@@ -44,6 +45,6 @@ export const searchShows = async (query, type) => {
 
     return response;
   } catch (error) {
-    console.error("error", error);
+    Alert.error("error", error);
   }
 };

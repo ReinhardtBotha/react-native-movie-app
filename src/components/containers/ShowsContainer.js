@@ -33,8 +33,7 @@ const ShowsContainer = (props) => {
   }, [type, screen]);
 
   const handleTypeChange = (value) => {
-    console.log("value", value);
-    if (value !== undefined) {
+    if (value) {
       setType(value);
     }
   };
@@ -46,7 +45,7 @@ const ShowsContainer = (props) => {
       {isLoading ? (
         <Loading />
       ) : (
-        <ShowsList navigation={navigation} movies={movies} />
+        <ShowsList navigation={navigation} screen={screen} movies={movies} />
       )}
     </Box>
   );

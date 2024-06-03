@@ -10,7 +10,9 @@ import {
 } from "@gluestack-ui/themed";
 
 const ShowCard = (props) => {
-  const { image, title, popularity, releaseDate, navigation, overview } = props;
+  const { image, title, popularity, releaseDate, navigation, id, screen } =
+    props;
+  
   return (
     <Card>
       <HStack>
@@ -25,11 +27,8 @@ const ShowCard = (props) => {
           <Button
             onPress={() =>
               navigation.navigate("Details", {
-                title,
-                image,
-                overview,
-                popularity,
-                releaseDate,
+                id,
+                screen,
               })
             }
           >
