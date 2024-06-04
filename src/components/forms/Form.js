@@ -14,7 +14,7 @@ import {
 } from "@gluestack-ui/themed";
 import SelectFilter from "../ui/SelectFilter";
 
-const selectOptions = ["multi", "movie"];
+const selectOptions = ["multi", "movie", "tv"];
 
 const Form = (props) => {
   const { onInputChange, onSubmit, onTypeChange, styles } = props;
