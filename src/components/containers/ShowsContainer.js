@@ -3,7 +3,8 @@ import { getShows, showTypes } from "../../services/api";
 import React, { useState, useEffect } from "react";
 import Loading from "../layout/Loading";
 import ShowsList from "../lists/ShowsList";
-import Filter from "../layout/Filter";
+import SelectFilter from "../ui/SelectFilter";
+import { StyleSheet } from "react-native";
 
 const ShowsContainer = (props) => {
   const { navigation, route } = props;
@@ -40,7 +41,14 @@ const ShowsContainer = (props) => {
 
   return (
     <Box navigation={navigation}>
-      <Filter screen={screen} handleTypeChange={handleTypeChange} />
+      <SelectFilter
+        initialLabel={showTypes[screen][0]}
+        defaultValue={showTypes[screen][0]}
+        handleTypeChange={handleTypeChange}
+        selectOptions={showTypes[screen]}
+        style={styles.selectFilter}
+
+      />
 
       {isLoading ? (
         <Loading />
@@ -50,5 +58,14 @@ const ShowsContainer = (props) => {
     </Box>
   );
 };
+
+const styles = StyleSheet.create({
+  selectFilter: {
+    paddingTop: 30,
+    paddingBottom: 30,
+    paddingLeft: 80,
+    paddingRight: 80,
+  },
+});
 
 export default ShowsContainer;

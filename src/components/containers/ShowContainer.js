@@ -1,4 +1,4 @@
-import { Box, Heading, Image, Text } from "@gluestack-ui/themed";
+import { Box, Center, Heading, Image, Text } from "@gluestack-ui/themed";
 import { getShowDetails } from "../../services/api";
 import { useState, useEffect } from "react";
 
@@ -24,17 +24,29 @@ const ShowContainer = (props) => {
   }, []);
 
   return (
-    <Box>
-      <Heading>{data?.title ?? data?.name}</Heading>
-      <Image
-        source={{ uri: `https://image.tmdb.org/t/p/w500${data?.poster_path}` }}
-        alt="poster"
-      />
-      <Text>{data?.overview}</Text>
-      <Text>
-        Popularity: {data?.popularity} | Release Date: {data?.releaseDate}
-      </Text>
-    </Box>
+    <Center p={40}>
+      <Box>
+        <Center>
+          <Heading paddingBottom={40}>{data?.title ?? data?.name}</Heading>
+        </Center>
+
+        <Center>
+          <Image
+            size="2xl"
+            source={{
+              uri: `https://image.tmdb.org/t/p/w500${data?.poster_path}`,
+            }}
+            alt="poster"
+          />
+        </Center>
+
+        <Text py={20}>{data?.overview}</Text>
+        <Text size="sm">
+          Popularity: {data?.popularity} | Release Date:
+          {data?.release_date ?? data?.first_air_date}
+        </Text>
+      </Box>
+    </Center>
   );
 };
 

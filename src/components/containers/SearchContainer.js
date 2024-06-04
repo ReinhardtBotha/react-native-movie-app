@@ -1,6 +1,6 @@
-import { Box, Text } from "@gluestack-ui/themed";
+import { Box, Center, Text, set } from "@gluestack-ui/themed";
 import Form from "../forms/Form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { searchShows } from "../../services/api";
 import ShowsList from "../lists/ShowsList";
 
@@ -10,6 +10,7 @@ const SearchContainer = (props) => {
   const [query, setQuery] = useState("");
   const [type, setType] = useState("movie");
   const [results, setResults] = useState([]);
+  const [initiateSearch, setInitiateSearch] = useState(false);
 
   const searchData = (query, type) => {
     setIsLoading(true);
@@ -35,18 +36,28 @@ const SearchContainer = (props) => {
 
   const handeOnSubmit = () => {
     searchData(query, type);
-    console.log("Query", query, "Type", type);
+    if (!query === "") {
+      setInitiateSearch(true);
+    }
+    // console.log("Query", query, "Type", type);
   };
 
   return (
-    <Box>
+    <Box p={30}>
       <Form
         onInputChange={handleInputChange}
         onSubmit={handeOnSubmit}
         onTypeChange={handleTypeChange}
       />
-      <Text>Search Results</Text>
-      <ShowsList movies={results} navigation={navigation}/>
+      {initiateSearch ? (
+        <ShowsList movies={results} navigation={navigation} />
+      ) : (
+        <Center>
+          <Text size="xl" bold py={120}>
+            Please initiate a search
+          </Text>
+        </Center>
+      )}
     </Box>
   );
 };

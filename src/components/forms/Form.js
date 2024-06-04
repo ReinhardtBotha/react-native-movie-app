@@ -8,25 +8,20 @@ import {
   InputIcon,
   InputSlot,
   SearchIcon,
-  ChevronDownIcon,
-  Icon,
-  Select,
-  SelectBackdrop,
-  SelectContent,
-  SelectDragIndicator,
-  SelectDragIndicatorWrapper,
-  SelectIcon,
-  SelectInput,
-  SelectItem,
-  SelectPortal,
-  SelectTrigger,
   Button,
   ButtonIcon,
   ButtonText,
 } from "@gluestack-ui/themed";
+import SelectFilter from "../ui/SelectFilter";
+
+const selectOptions = ["multi", "movie"];
 
 const Form = (props) => {
   const { onInputChange, onSubmit, onTypeChange } = props;
+
+  const handleTypeChange = (value) => {
+    onTypeChange(value);
+  };
 
   return (
     <Box>
@@ -39,7 +34,7 @@ const Form = (props) => {
             <InputIcon as={SearchIcon} />
           </InputSlot>
           <InputField
-            placeholder="Search..."
+            placeholder="i.e James Bond, CSI"
             onChangeText={(value) => onInputChange(value)}
           />
         </Input>
@@ -49,24 +44,12 @@ const Form = (props) => {
           <FormControlLabelText>Choose Search Type</FormControlLabelText>
         </FormControl.Label>
         <HStack>
-          <Select onValueChange={(value) => onTypeChange(value)}>
-            <SelectTrigger variant="outline" size="md">
-              <SelectInput />
-              <SelectIcon mr="$3">
-                <Icon as={ChevronDownIcon} />
-              </SelectIcon>
-            </SelectTrigger>
-            <SelectPortal>
-              <SelectBackdrop />
-              <SelectContent>
-                <SelectDragIndicatorWrapper>
-                  <SelectDragIndicator />
-                </SelectDragIndicatorWrapper>
-                <SelectItem label="multi" value="multi" />
-                <SelectItem label="movie" value="movie" />
-              </SelectContent>
-            </SelectPortal>
-          </Select>
+          <SelectFilter
+            initialLabel={selectOptions[0]}
+            defaultValue={selectOptions[0]}
+            handleTypeChange={handleTypeChange}
+            selectOptions={selectOptions}
+          />
           <Button onPress={onSubmit}>
             <ButtonIcon as={SearchIcon} />
             <ButtonText>Search</ButtonText>

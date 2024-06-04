@@ -1,14 +1,19 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import IndexScreen from "../screens/IndexStreen";
 import DetailScreen from "../screens/DetailScreen";
 
 const Stack = createNativeStackNavigator();
 
+const MyTheme = {
+  colors: {
+    background: "white",
+  },
+};
+
 const AppStack = () => (
-  <NavigationContainer>
+  <NavigationContainer theme={MyTheme}>
     <Stack.Navigator
       screenOptions={{
         title: "Movies App",
@@ -25,8 +30,9 @@ const AppStack = () => (
         name="Details"
         component={DetailScreen}
         options={({ route }) => {
+          console.log(route.params);
           return {
-            title: route.params?.movieTitle,
+            title: route.params?.title || "Details",
             headerStyle: {
               backgroundColor: "#fff",
             },

@@ -12,16 +12,17 @@ import {
   SelectPortal,
   SelectTrigger,
 } from "@gluestack-ui/themed";
-import { showTypes } from "../../services/api";
 
-const Filter = (props) => {
-  const { screen, handleTypeChange } = props;
+const SelectFilter = (props) => {
+  const { handleTypeChange, initialLabel, defaultValue, selectOptions, style } =
+    props;
 
   return (
     <Select
-      initialLabel={showTypes[screen][0]}
-      defaultValue={showTypes[screen][0]}
+      initialLabel={initialLabel}
+      defaultValue={defaultValue}
       onValueChange={(e) => handleTypeChange(e)}
+      style={style}
     >
       <SelectTrigger variant="outline" size="md">
         <SelectInput />
@@ -35,7 +36,7 @@ const Filter = (props) => {
           <SelectDragIndicatorWrapper>
             <SelectDragIndicator />
           </SelectDragIndicatorWrapper>
-          {showTypes[screen].map((item, index) => (
+          {selectOptions?.map((item, index) => (
             <SelectItem key={index} label={item} value={item} />
           ))}
         </SelectContent>
@@ -44,4 +45,4 @@ const Filter = (props) => {
   );
 };
 
-export default Filter;
+export default SelectFilter;
