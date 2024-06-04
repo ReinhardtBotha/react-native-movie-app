@@ -17,7 +17,7 @@ import SelectFilter from "../ui/SelectFilter";
 const selectOptions = ["multi", "movie"];
 
 const Form = (props) => {
-  const { onInputChange, onSubmit, onTypeChange } = props;
+  const { onInputChange, onSubmit, onTypeChange, styles } = props;
 
   const handleTypeChange = (value) => {
     onTypeChange(value);
@@ -25,11 +25,11 @@ const Form = (props) => {
 
   return (
     <Box>
-      <FormControl isRequired>
+      <FormControl isRequired paddingBottom={10}>
         <FormControl.Label>
           <FormControlLabelText>Search movie/TV Show Name</FormControlLabelText>
         </FormControl.Label>
-        <Input>
+        <Input style={styles}>
           <InputSlot pl="$3">
             <InputIcon as={SearchIcon} />
           </InputSlot>
@@ -39,16 +39,17 @@ const Form = (props) => {
           />
         </Input>
       </FormControl>
-      <FormControl isRequired>
+      <FormControl isRequired paddingBottom={10}>
         <FormControl.Label>
           <FormControlLabelText>Choose Search Type</FormControlLabelText>
         </FormControl.Label>
-        <HStack>
+        <HStack space="md" width={200}>
           <SelectFilter
             initialLabel={selectOptions[0]}
             defaultValue={selectOptions[0]}
             handleTypeChange={handleTypeChange}
             selectOptions={selectOptions}
+            style={styles}
           />
           <Button onPress={onSubmit}>
             <ButtonIcon as={SearchIcon} />

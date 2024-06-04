@@ -20,6 +20,7 @@ const AppStack = () => (
         headerStyle: {
           backgroundColor: "#2c3e50",
         },
+        headerTitleAlign: "center",
         headerTitleStyle: {
           color: "#fff",
         },
@@ -30,7 +31,6 @@ const AppStack = () => (
         name="Details"
         component={DetailScreen}
         options={({ route }) => {
-          console.log(route.params);
           return {
             title: route.params?.title || "Details",
             headerStyle: {

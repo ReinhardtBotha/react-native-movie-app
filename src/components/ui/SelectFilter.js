@@ -23,6 +23,7 @@ const SelectFilter = (props) => {
       defaultValue={defaultValue}
       onValueChange={(e) => handleTypeChange(e)}
       style={style}
+      width="100%"
     >
       <SelectTrigger variant="outline" size="md">
         <SelectInput />

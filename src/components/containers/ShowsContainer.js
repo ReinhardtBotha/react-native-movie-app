@@ -15,12 +15,15 @@ const ShowsContainer = (props) => {
   const [movies, setMovies] = useState([]);
   const [type, setType] = useState(currentType);
   const [screen, setScreen] = useState(currentScreen);
+  const [page, setPage] = useState(1);
+  const [maxPages, setMaxPages] = useState();
 
   const fetchShows = (type, screen) => {
     setIsLoading(true);
-    getShows(type, screen).then(
+    getShows(type, screen, page).then(
       (movies) => {
         setMovies(movies.results);
+        setMaxPages(movies.total_pages ?? -1);
         setIsLoading(false);
       },
       (error) => {
@@ -31,11 +34,12 @@ const ShowsContainer = (props) => {
 
   useEffect(() => {
     fetchShows(type, screen);
-  }, [type, screen]);
+  }, [type, screen, page]);
 
   const handleTypeChange = (value) => {
     if (value) {
       setType(value);
+      setPage(1);
     }
   };
 
@@ -47,13 +51,19 @@ const ShowsContainer = (props) => {
         handleTypeChange={handleTypeChange}
         selectOptions={showTypes[screen]}
         style={styles.selectFilter}
-
       />
 
       {isLoading ? (
         <Loading />
       ) : (
-        <ShowsList navigation={navigation} screen={screen} movies={movies} />
+        <ShowsList
+          navigation={navigation}
+          screen={screen}
+          movies={movies}
+          page={page}
+          maxPages={maxPages}
+          setPage={setPage}
+        />
       )}
     </Box>
   );
