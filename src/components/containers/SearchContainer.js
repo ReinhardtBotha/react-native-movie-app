@@ -1,9 +1,9 @@
-import { Box, Center, Text, set } from "@gluestack-ui/themed";
+import { Center, Text } from "@gluestack-ui/themed";
 import Form from "../forms/Form";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { searchShows } from "../../services/api";
 import ShowsList from "../lists/ShowsList";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 const SearchContainer = (props) => {
   const { navigation } = props;
@@ -49,18 +49,21 @@ const SearchContainer = (props) => {
   };
 
   return (
-    <Box p={30}>
-      <Form
-        onInputChange={handleInputChange}
-        onSubmit={handeOnSubmit}
-        onTypeChange={handleTypeChange}
-        styles={isInvalid ? styles.errorStyle : null}
-      />
-      {isInvalid ? (
-        <Text size="sm" color="red">
-          Movie / TV Show name is required
-        </Text>
-      ) : null}
+    <View style={styles.container} p={30}>
+      <View style={styles.formContainer}>
+        <Form
+          onInputChange={handleInputChange}
+          onSubmit={handeOnSubmit}
+          onTypeChange={handleTypeChange}
+          styles={isInvalid ? styles.errorStyle : null}
+        />
+        {isInvalid ? (
+          <Text size="sm" color="red">
+            Movie / TV Show name is required
+          </Text>
+        ) : null}
+      </View>
+
       {initiateSearch ? (
         <ShowsList movies={results} navigation={navigation} />
       ) : (
@@ -70,11 +73,17 @@ const SearchContainer = (props) => {
           </Text>
         </Center>
       )}
-    </Box>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  formContainer: {
+    padding: 30,
+  },
   errorStyle: {
     borderRadius: 5,
     borderWidth: 1,

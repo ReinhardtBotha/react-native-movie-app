@@ -1,10 +1,10 @@
-import { Box } from "@gluestack-ui/themed";
 import { getShows, showTypes } from "../../services/api";
 import React, { useState, useEffect } from "react";
 import Loading from "../layout/Loading";
 import ShowsList from "../lists/ShowsList";
 import SelectFilter from "../ui/SelectFilter";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
+import PageSelector from "../ui/PageSelector";
 
 const ShowsContainer = (props) => {
   const { navigation, route } = props;
@@ -23,7 +23,7 @@ const ShowsContainer = (props) => {
     getShows(type, screen, page).then(
       (movies) => {
         setMovies(movies.results);
-        setMaxPages(movies.total_pages ?? -1);
+        setMaxPages(movies.total_pages ?? undefined);
         setIsLoading(false);
       },
       (error) => {
@@ -44,7 +44,7 @@ const ShowsContainer = (props) => {
   };
 
   return (
-    <Box navigation={navigation}>
+    <View style={styles.container} navigation={navigation}>
       <SelectFilter
         initialLabel={showTypes[screen][0]}
         defaultValue={showTypes[screen][0]}
@@ -65,7 +65,10 @@ const ShowsContainer = (props) => {
           setPage={setPage}
         />
       )}
-    </Box>
+      {maxPages && (
+        <PageSelector page={page} maxPages={maxPages} setPage={setPage} />
+      )}
+    </View>
   );
 };
 
@@ -75,6 +78,9 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
     paddingLeft: 80,
     paddingRight: 80,
+  },
+  container: {
+    flex: 1,
   },
 });
 

@@ -51,7 +51,7 @@ const Form = (props) => {
             selectOptions={selectOptions}
             style={styles}
           />
-          <Button onPress={onSubmit}>
+          <Button onPress={onSubmit} backgroundColor="#06b6d4">
             <ButtonIcon as={SearchIcon} />
             <ButtonText>Search</ButtonText>
           </Button>
